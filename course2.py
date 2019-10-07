@@ -56,11 +56,8 @@ while suite==0:
 											ok=0
 											while ok==0:
 												propperso=input("Quel pourcentage souhaitez-vous donner à ce type ? (entre 0 et "+str(proptotal)+") ")
-												if int(propperso) in range(0,int(proptotal)):
-													if int(proptotal)-int(propperso)<0:
-														propperso=proptotal
-													else:
-														proptotal=int(proptotal)-int(propperso)
+												if int(propperso) in range(0,int(proptotal)+1):
+													proptotal=int(proptotal)-int(propperso)
 													f_init = open("fichier_base/init", "w")
 													f_init.write(str(propperso))
 													f_init.write("\n")

@@ -15,6 +15,9 @@ listepoulet=['poulet tomate au four + qqchose','poulet concombre tomate','poulet
 listeautresain = ['poisson epinard','tomate farcie','jambon pate','pate bolo','thon riz','thon haricot','poisson riz','poele thai au poulet','soupe/salade','taboulé','cereales et legume surg','pate epinard','salade cesar']
 
 
+
+
+
 chiffre=int(input("Combien de repas voulez-vous ? "))
 repasfat=(25*chiffre//100)
 repassain=chiffre-repasfat

@@ -43,15 +43,18 @@ while suite==0:
 								if str(proportion)=="1" or str(proportion)=="2":
 									proptotal=100
 									for i in range(0,int(nbre_repas)):
-										type_repas=input("Choisissez le nom de votre "+str(i+1)+"e type : ")
+										type_repas=input("Choisissez le nom de votre "+str(i+1)+"e type : repas ")
 										f_type = open("fichier_base/"+type_repas, "w")
 										f_type.write("premier repas")
 										f_type.write("\n")
 										f_type.write("deuxième repas")
 										f_type.close()
 										f_init = open("fichier_base/init", "w")
-										f_init.write(str(type_repas))
-										f_init.write("\n")
+										z=i*2
+										y=i*2+1
+										for j in range (0,z):
+											f_init.write("\n")
+										f_init.write(type_repas)
 										if str(proportion)=="2":
 											ok=0
 											while ok==0:
@@ -59,8 +62,9 @@ while suite==0:
 												if int(propperso) in range(0,int(proptotal)+1):
 													proptotal=int(proptotal)-int(propperso)
 													f_init = open("fichier_base/init", "w")
+													for j in range (0,y):
+														f_init.write("\n")
 													f_init.write(str(propperso))
-													f_init.write("\n")
 													ok=1
 												else:
 													print ("Merci de choisir un pourcentage entre 0 et "+str(proptotal))
@@ -68,8 +72,9 @@ while suite==0:
 										else:
 											propequit=int(proptotal)//int(nbre_repas)
 											f_init=open("fichier_base/init", "w")
+											for j in range (0,y):
+												f_init.write("\n")
 											f_init.write(str(propequit))
-											f_init.write("\n")
 									f_init.close()
 									suite2=1
 								else:

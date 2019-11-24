@@ -20,21 +20,38 @@ while suite==0:
 				ini=input()
 				if str(ini)=="1":
 					suitebis=1
-					if os.path.isfile("fichier_base/init")=="true":
-						liste=[]
-						i=2
-						f_init=open("fichier_base/init", "r")
-						for line in f_init:
-							line=line.strip()
-							if i%2==0:
-								os.remove(line)
-							i=i+1
-						os.remove("fichier_base/init")
+					print ("1 - Vous utilisez un OS Linux")
+					print ("2 - Vous utilisez un OS Windows")
+					systeme=input()
+					if str(systeme)=="1":
+						os.system("rm -rf fichier_base")
+						os.mkdir("fichier_base")
+					elif str(systeme)=="2":
+						os.system("rmdir fichier_base /S /Q")
+						os.mkdir("fichier_base")
+					else:
+						suitebis=0
+						pass
+
+#					if os.path.isfile("fichier_base/.init")=="true":
+#						
+#						liste=[]
+#						i=2
+#						f_init=open("fichier_base/init", "r")
+#						for line in f_init:
+#							line=line.strip()
+#							if i%2==0:
+#								os.remove(line)
+#							i=i+1
+#						os.remove("fichier_base/init")
 					suite3=0
 					while suite3==0:
 						nbre_repas=input("Combien de types de repas voulez-vous ? ")
 						if int(nbre_repas) in range(1,100):
 							suite2=0
+							#f_init = open("fichier_base/.init", "w")
+							#f_init.write(nbre_repas)
+							#f_init.close()
 							while suite2==0:
 								print ("Choisissez la priorité de vos types de repas :")
 								print ("1 - La même pour tous")
@@ -44,38 +61,38 @@ while suite==0:
 									proptotal=100
 									for i in range(0,int(nbre_repas)):
 										type_repas=input("Choisissez le nom de votre "+str(i+1)+"e type : repas ")
-										f_type = open("fichier_base/"+type_repas, "w")
+										f_type = open("fichier_base/"+str(type_repas), "w")
 										f_type.write("premier repas")
 										f_type.write("\n")
 										f_type.write("deuxième repas")
 										f_type.close()
-										f_init = open("fichier_base/init", "w")
-										z=i*2
-										y=i*2+1
-										for j in range (0,z):
-											f_init.write("\n")
-										f_init.write(type_repas)
+										
 										if str(proportion)=="2":
 											ok=0
 											while ok==0:
-												propperso=input("Quel pourcentage souhaitez-vous donner à ce type ? (entre 0 et "+str(proptotal)+") ")
-												if int(propperso) in range(0,int(proptotal)+1):
-													proptotal=int(proptotal)-int(propperso)
-													f_init = open("fichier_base/init", "w")
-													for j in range (0,y):
-														f_init.write("\n")
-													f_init.write(str(propperso))
+												prop=input("Quel pourcentage souhaitez-vous donner à ce type ? (entre 0 et "+str(proptotal)+") ")
+												if int(prop) in range(0,int(proptotal)+1):
+													proptotal=int(proptotal)-int(prop)
 													ok=1
 												else:
 													print ("Merci de choisir un pourcentage entre 0 et "+str(proptotal))
 													pass
 										else:
-											propequit=int(proptotal)//int(nbre_repas)
-											f_init=open("fichier_base/init", "w")
-											for j in range (0,y):
-												f_init.write("\n")
-											f_init.write(str(propequit))
-									f_init.close()
+											prop=int(proptotal)//int(nbre_repas)
+									
+										f_init = open("fichier_base/init", "a")
+										f_init.write(str(type_repas))
+										f_init.write("\n")
+										f_init.write(str(prop))
+										f_init.write("\n")
+										f_init.close()
+
+
+									#	f_tmp = open("fichier_base/"+str(i), "w")
+									#	f_tmp.write(str(type_repas))
+									#	f_tmp.write("\n")
+									#	f_tmp.write(str(prop))
+									#	f_tmp.close()
 									suite2=1
 								else:
 									print ("Merci de choisir entre 1 et 2")
@@ -88,8 +105,8 @@ while suite==0:
 					pass
 		else:
 			#utilisation fichier deja existant
-			if os.path.isfile("fichier_base/.init")=="true":
-				f_init=open("fichier_base/.init", "r")
+			if os.path.isfile("fichier_base")=="true":
+				f_init=open("fichier_base/init", "r")
 				liste_repas=[]
 				liste_prop=[]
 				i=2

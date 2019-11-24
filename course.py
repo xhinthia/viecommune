@@ -19,7 +19,7 @@ listeautresain = ['poisson epinard','tomate farcie','jambon pate','pate bolo','t
 
 
 chiffre=int(input("Combien de repas voulez-vous ? "))
-repasfat=(25*chiffre//100)
+repasfat=(35*chiffre//100)
 repassain=chiffre-repasfat
 print (" ")
 print ("___________________________________")
